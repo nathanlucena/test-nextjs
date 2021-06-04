@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { signIn, signOut, useSession } from 'next-auth/client';
 
-export default function Home() {
+export default function Page() {
   const [session, loading] = useSession();
   return (
     <div className={styles.container}>
@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1> oi </h1>
+        <h1> Foi? </h1>
 
         {!session && (
           <>
@@ -22,7 +22,7 @@ export default function Home() {
         )}
         {session && (
           <>
-            Signed in as {session.user.name} <br />
+            Signed in as {session.user.email} <br />
             <button onClick={() => signOut()}>Sign out</button>
           </>
         )}

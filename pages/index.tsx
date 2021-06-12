@@ -1,37 +1,32 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import dynamic from 'next/dynamic';
+import styles from './styles.module.scss';
+
 import { signIn, signOut, useSession } from 'next-auth/client';
 
+import RightDiv from '../components/rightDiv/RightDiv';
+import LeaftDiv from '../components/LeaftDiv/LeaftDiv';
+import MapDiv from '../components/MapDiv/MapDiv';
+
 export default function Home() {
+  const MapDiv = dynamic(() => import('../components/MapDiv/MapDiv'), {
+    ssr: false,
+  });
   const [session, loading] = useSession();
   return (
-    <div className={styles.container}>
+    <div className={styles.mainPage}>
       <Head>
         <title>Create Next App</title>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossOrigin=""
+        />
       </Head>
-
-      <main className={styles.main}>
-        <h1> oi </h1>
-
-        {!session && (
-          <>
-            Not signed in <br />
-            <button onClick={() => signIn('auth0')}>Sign in</button>
-          </>
-        )}
-        {session && (
-          <>
-            Signed in as {session.user.name} <br />
-            <button onClick={() => signOut()}>Sign out</button>
-          </>
-        )}
-        {loading && (
-          <div>
-            <h1>CARREGANDO</h1>
-          </div>
-        )}
-      </main>
+      <LeaftDiv />
+      <MapDiv />
+      <RightDiv />
     </div>
   );
 }

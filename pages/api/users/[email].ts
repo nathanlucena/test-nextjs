@@ -8,14 +8,6 @@ interface ErrorResponseType {
   error: string;
 }
 
-// interface Locale {
-//   name_local: string;
-//   image: string;
-//   description: string;
-//   coordinates: number[];
-//   created_at: Date;
-// }
-
 interface SuccessResponseType {
   _id: ObjectId;
   name: string;
@@ -37,13 +29,18 @@ export default async (
     const { email } = req.query;
 
     if (!email) {
-      res.status(400).json({ error: 'email não encontrado' });
+      res.status(400).json({ error: 'Missing e-mail on request body' });
       return;
     }
 
     const { db } = await connect();
 
     const response = await db.collection('users').findOne({ email });
+
+    if (!response) {
+      res.status(400).json({ error: `User with e-mail ${email} not found` });
+      return;
+    }
 
     res.status(200).json(response);
   }

@@ -59,7 +59,11 @@ export default async (
   } else if (req.method === 'GET') {
     const { db } = await connect();
 
-    db.collection('users').find();
+    const response: SuccessResponseType = await db
+      .collection('users')
+      .find({})
+      .toArray();
+    res.status(200).json(response);
   } else if (req.method === 'PUT') {
     const { email, locales } = req.body;
 

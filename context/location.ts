@@ -1,30 +1,15 @@
-import React, { createContext, useState, useContext } from 'react';
+import React from 'react';
 
-// interface IContextProps {
-//     state: IState;
-//     dispatch: ({type}:{type:string}) => void;
-//   }
+interface cityLocation {
+  coordinates: number[];
+  city: string;
+}
 
-//  const CountContext = React.createContext({} as IContextProps);
+interface ContextType {
+  tempLocation: cityLocation;
+  setTempLocation: (e: cityLocation) => void;
+}
 
-// export default function CountProvider({ children }) {
-//   const [count, setCount] = useState(0);
+const locationContext = React.createContext({} as ContextType);
 
-//   return (
-//     <CountContext.Provider
-//       value={{
-//         count,
-//         setCount
-//       }}
-//     >
-//       {children}
-//     </CountContext.Provider>
-//   );
-// }
-
-// export function useCount() {
-//   const context = useContext(CountContext);
-//   if (!context) throw new Error("useCount must be used within a CountProvider");
-//   const { count, setCount } = context;
-//   return { count, setCount };
-// }
+export default locationContext;

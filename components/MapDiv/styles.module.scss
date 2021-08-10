@@ -4,4 +4,67 @@
   .leaflet-container {
     height: 100vh !important;
   }
+  .auxilio {
+    position: relative;
+  }
+  .clickPopup {
+    background-color: red;
+  }
+}
+
+$primary-color: rgb(62, 113, 69);
+$pin-size: 30px;
+
+.pin {
+  background-color: $primary-color;
+  border-radius: 50%;
+  height: $pin-size;
+  width: $pin-size;
+  position: absolute;
+  cursor: pointer;
+
+  .pin-icon {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+
+    span {
+      width: $pin-size;
+      height: $pin-size;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+
+      i {
+        font-size: $pin-size / 2;
+        color: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  &:before {
+    border: 0 solid transparent;
+    border-radius: 50%;
+    background-color: #fff;
+    content: ' ';
+    display: block;
+    height: $pin-size / 1.5;
+    left: $pin-size / 6;
+    position: relative;
+    top: $pin-size / 6;
+    width: $pin-size / 1.5;
+    z-index: 1;
+  }
+
+  &:after {
+    border-left: ($pin-size / 2) solid transparent;
+    border-right: ($pin-size / 2) solid transparent;
+    border-top: ($pin-size / 2) + ($pin-size / 10) solid $primary-color;
+    border-radius: $pin-size;
+    content: ' ';
+    height: 0;
+    position: relative;
+    top: $pin-size / 1.64;
+    width: 0;
+  }
 }

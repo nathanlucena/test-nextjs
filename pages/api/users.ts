@@ -73,7 +73,7 @@ export default async (
       !locales.image ||
       !locales.coordinates
     ) {
-      res.status(400).json({ error: 'Missing parameter on request body' });
+      res.status(400).json({ error: 'Missing parameter on request boody' });
       return;
     }
 

@@ -43,7 +43,7 @@ export default async (
       !locales.description ||
       !locales.coordinates
     ) {
-      res.status(400).json({ error: 'Tem algo faltando aí, meu chapaa' });
+      res.status(400).json({ error: 'Tem algo faltando aí, meu chapa' });
       return;
     } else {
       const { db } = await connect();
